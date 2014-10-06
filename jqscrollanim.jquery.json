@@ -1,0 +1,25 @@
+{
+	"version": "2.1.2",
+	"name": "jqscrollanim",
+	"title": "jqScrollAnim",
+	"description": "jQuery plugin for define animations whose reproduction depends on the position of the vertical scroll.",
+	"keywords": [
+		"scroll",
+		"vertical",
+		"animation"
+	],
+	"author": {
+		"name": "JFMDev",
+		"url": "http://jfmdev.github.io"
+	},
+	"licenses": [
+		{
+		"type": "LGPL3",
+		"url": "http://www.gnu.org/licenses/lgpl.html"
+		}
+	],
+	"homepage": "https://github.com/jfmdev/jqScrollAnim",
+	"dependencies": {
+		"jquery": ">=1.5"
+	}
+}
