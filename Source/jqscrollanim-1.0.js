@@ -87,8 +87,8 @@
                 if(anim.end === null) anim.end = 1.0;
             }
             if(anim.type === 'move' || anim.type === 'move-left' || anim.type === 'move-right') {
-                if(anim.type === 'move-left') anim.end = 'out-left';
-                if(anim.type === 'move-right') anim.end = 'out-right';
+                if(anim.type === 'move-left') anim.start = 'out-left';
+                if(anim.type === 'move-right') anim.start = 'out-right';
                 if(anim.property === null) anim.property = 'left';
                 if(anim.unit === '' || anim.unit === null) anim.unit = 'px';
                 anim.type = 'integer';
@@ -184,13 +184,17 @@
                         target.css(anim.property, (startVal*(1.0 - progress) + endVal*progress) + '' + anim.unit);                       
                     } 
                     else if(anim.type === 'integer') {
-                        if(endVal !== 'out-left' && endVal !== 'out-right') {
+                        if(endVal !== 'out-left' && endVal !== 'out-right' && startVal !== 'out-left' && startVal !== 'out-right') {
                             target.css(anim.property, parseInt(startVal*(1.0 - progress) + endVal*progress, 10) + '' + anim.unit);
                         } else {
                             // Calculate new position in absolute coordinates.
                             var start = $.data(target, 'offset').left;
-                            var end = endVal === 'out-left'? -target.outerWidth() : $(window).width();
-                            var newPosAbs = end*(1.0 - progress) + start*progress;
+                            var end = start;
+                            if(endVal === 'out-left') end = -target.outerWidth();
+                            if(endVal === 'out-right') end = $(window).width();
+                            if(startVal === 'out-left') start = -target.outerWidth();
+                            if(startVal === 'out-right') start = $(window).width();
+                            var newPosAbs = start*(1.0 - progress) + end*progress;
 
                             // Verify which CSS property must be used ('left' or 'right').
                             if(anim.property === 'left') {
@@ -289,3 +293,5 @@
             }
     };
 }( jQuery ));
+
+

@@ -10,9 +10,7 @@ This plugin was inspired by the site [SlaveryFootpring.org](http://slaveryfootpr
 Demos
 -----
 
-Wonderful colors: http://jsfiddle.net/jfmdev/L43zcmq4/1/ ACTUALIZAR
-
-Amazing movements: http://jsfiddle.net/jfmdev/78ktpaqv/3/ ACTUALIZAR
+Sample: http://jfmdev.github.io/jqScrollAnim/demos.html
 
 How to use
 ----------

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="jquery-1.11.1.min.js"></script>
+        <script type="text/javascript" src="../Source/jqscrollanim-1.0.js"></script>
+        <script type="text/javascript">
+            jQuery(document).ready(function() {
+                // Basic fade animation.
+                jQuery("#basic_fade").jqScrollAnim({
+                    active_down: 200,
+                    passive_down: 200,
+                    animation: {type:'fade'}
+                });
+                
+                // Fade in and out animation.
+                jQuery("#fade_in_out").jqScrollAnim({
+                    active_down: 200,
+                    passive_down: 200,
+                    active_up: 200,
+                    passive_up: 200,
+                    animation: {type:'fade'}
+                });
+                
+                // Move left animation.
+                jQuery("#move_left").jqScrollAnim({
+                    active_down: 200,
+                    passive_down: 50,
+                    animation: {type:'move-left'}
+                });
+                
+                // Move right animation.
+                jQuery("#move_right").jqScrollAnim({
+                    active_down: 200,
+                    passive_down: 50,
+                    animation: {type:'move-right'}
+                });
+                
+                // Background color animation.
+                jQuery("#background_color").jqScrollAnim({
+                    active_down: 200,
+                    passive_down: 200,
+                    animation: {type:'color', property:'background-color', end:[255,255,255]}
+                });
+                
+                // Font color animation.
+                jQuery("#font_color p").jqScrollAnim({
+                    active_down: 200,
+                    passive_down: 100,
+                    animation: {type:'color', property:'color', end:[0,0,0]}
+                });
+                
+                // Left padding animation.
+                jQuery("#padding").jqScrollAnim({
+                    active_down: 200,
+                    passive_down: 200,
+                    animations: [
+                        {type:'integer', property:'padding-left', start:75, end:0, unit:'px'}, 
+                        {type:'integer', property:'padding-right', start:75, end:0, unit:'px'}
+                    ]
+                });
+                
+                // Font size animation.
+                jQuery("#font_size").jqScrollAnim({
+                    active_down: 200,
+                    passive_down: 100,
+                    animation: {type:'integer', property:'font-size', start:8, end:16, unit:'pt'}
+                });
+            });
+
+        </script>
+    </head>
+    <body>
+        <h1>Basic examples</h1>
+        <p>Scroll down in order to see the animations</p>
+        <br/><br/><br/>
+        <br/><br/><br/>
+        <br/><br/><br/>
+        <br/><br/><br/>
+        <br/><br/><br/>
+        <br/><br/><br/>
+        <br/><br/><br/>
+        <br/><br/><br/>
+        <br/><br/><br/>
+        <br/><br/><br/>
+        <div id="basic_fade">
+            <h2>Basic fade animation</h2>
+            <p>Lorem ipsum ad his scripta blandit partiendo, eum fastidii accumsan euripidis in, eum liber hendrerit an. 
+            Qui ut wisi vocibus suscipiantur, quo dicit ridens inciderint id. Quo mundi lobortis reformidans eu, legimus 
+            senserit definiebas an eos. Eu sit tincidunt incorrupte definitionem, vis mutat affert percipit cu, eirmod 
+            consectetuer signiferumque eu per. In usu latine equidem dolores. Quo no falli viris intellegam, ut fugit veritus 
+            placerat per.</p>
+            <p>Ius id vidit volumus mandamus, vide veritus democritum te nec, ei eos debet libris consulatu. No mei ferri graeco 
+            dicunt, ad cum veri accommodare. Sed at malis omnesque delicata, usu et iusto zzril meliore. Dicunt maiorum eloquentiam 
+            cum cu, sit summo dolor essent te. Ne quodsi nusquam legendos has, ea dicit voluptua eloquentiam pro, ad sit quas 
+            qualisque. Eos vocibus deserunt quaestio ei.</p>
+            <p>Blandit incorrupte quaerendum in quo, nibh impedit id vis, vel no nullam semper audiam. Ei populo graeci consulatu mei,
+            has ea stet modus phaedrum. Inani oblique ne has, duo et veritus detraxit. Tota ludus oratio ea mel, offendit persequeris 
+            ei vim. Eos dicat oratio partem ut, id cum ignota senserit intellegat. Sit inani ubique graecis ad, quando graecis 
+            liberavisse et cum, dicit option eruditi at duo. Homero salutatus suscipiantur eum id, tamquam voluptaria expetendis ad 
+            sed, nobis feugiat similique usu ex.</p>
+        </div>
+        <br/>
+        <div id="fade_in_out">
+            <h2>Fade in and out animation</h2>
+            <p>Lorem ipsum ad his scripta blandit partiendo, eum fastidii accumsan euripidis in, eum liber hendrerit an. 
+            Qui ut wisi vocibus suscipiantur, quo dicit ridens inciderint id. Quo mundi lobortis reformidans eu, legimus 
+            senserit definiebas an eos. Eu sit tincidunt incorrupte definitionem, vis mutat affert percipit cu, eirmod 
+            consectetuer signiferumque eu per. In usu latine equidem dolores. Quo no falli viris intellegam, ut fugit veritus 
+            placerat per.</p>
+            <p>Ius id vidit volumus mandamus, vide veritus democritum te nec, ei eos debet libris consulatu. No mei ferri graeco 
+            dicunt, ad cum veri accommodare. Sed at malis omnesque delicata, usu et iusto zzril meliore. Dicunt maiorum eloquentiam 
+            cum cu, sit summo dolor essent te. Ne quodsi nusquam legendos has, ea dicit voluptua eloquentiam pro, ad sit quas 
+            qualisque. Eos vocibus deserunt quaestio ei.</p>
+            <p>Blandit incorrupte quaerendum in quo, nibh impedit id vis, vel no nullam semper audiam. Ei populo graeci consulatu mei,
+            has ea stet modus phaedrum. Inani oblique ne has, duo et veritus detraxit. Tota ludus oratio ea mel, offendit persequeris 
+            ei vim. Eos dicat oratio partem ut, id cum ignota senserit intellegat. Sit inani ubique graecis ad, quando graecis 
+            liberavisse et cum, dicit option eruditi at duo. Homero salutatus suscipiantur eum id, tamquam voluptaria expetendis ad 
+            sed, nobis feugiat similique usu ex.</p>
+        </div>
+        <br/>
+        <div>
+            <h2>Move left animation</h2>
+            <p id="move_left" style="position:relative;">Lorem ipsum ad his scripta blandit partiendo, eum fastidii accumsan euripidis in, eum liber hendrerit an. 
+            Qui ut wisi vocibus suscipiantur, quo dicit ridens inciderint id. Quo mundi lobortis reformidans eu, legimus 
+            senserit definiebas an eos. Eu sit tincidunt incorrupte definitionem, vis mutat affert percipit cu, eirmod 
+            consectetuer signiferumque eu per. In usu latine equidem dolores. Quo no falli viris intellegam, ut fugit veritus 
+            placerat per.</p>
+        </div>
+        <br/>
+        <div>
+            <h2>Move right animation</h2>
+            <p id="move_right" style="position:relative;">Lorem ipsum ad his scripta blandit partiendo, eum fastidii accumsan euripidis in, eum liber hendrerit an. 
+            Qui ut wisi vocibus suscipiantur, quo dicit ridens inciderint id. Quo mundi lobortis reformidans eu, legimus 
+            senserit definiebas an eos. Eu sit tincidunt incorrupte definitionem, vis mutat affert percipit cu, eirmod 
+            consectetuer signiferumque eu per. In usu latine equidem dolores. Quo no falli viris intellegam, ut fugit veritus 
+            placerat per.</p>
+        </div>
+        <br/>
+        <div id="background_color" style="background-color:#0FF;">
+            <h2>Background color animation</h2>
+            <p>Lorem ipsum ad his scripta blandit partiendo, eum fastidii accumsan euripidis in, eum liber hendrerit an. 
+            Qui ut wisi vocibus suscipiantur, quo dicit ridens inciderint id. Quo mundi lobortis reformidans eu, legimus 
+            senserit definiebas an eos. Eu sit tincidunt incorrupte definitionem, vis mutat affert percipit cu, eirmod 
+            consectetuer signiferumque eu per. In usu latine equidem dolores. Quo no falli viris intellegam, ut fugit veritus 
+            placerat per.</p>
+            <p>Ius id vidit volumus mandamus, vide veritus democritum te nec, ei eos debet libris consulatu. No mei ferri graeco 
+            dicunt, ad cum veri accommodare. Sed at malis omnesque delicata, usu et iusto zzril meliore. Dicunt maiorum eloquentiam 
+            cum cu, sit summo dolor essent te. Ne quodsi nusquam legendos has, ea dicit voluptua eloquentiam pro, ad sit quas 
+            qualisque. Eos vocibus deserunt quaestio ei.</p>
+            <p>Blandit incorrupte quaerendum in quo, nibh impedit id vis, vel no nullam semper audiam. Ei populo graeci consulatu mei,
+            has ea stet modus phaedrum. Inani oblique ne has, duo et veritus detraxit. Tota ludus oratio ea mel, offendit persequeris 
+            ei vim. Eos dicat oratio partem ut, id cum ignota senserit intellegat. Sit inani ubique graecis ad, quando graecis 
+            liberavisse et cum, dicit option eruditi at duo. Homero salutatus suscipiantur eum id, tamquam voluptaria expetendis ad 
+            sed, nobis feugiat similique usu ex.</p>
+        </div>
+        <br/>
+        <div id="font_color">
+            <h2>Font color animation</h2>
+            <p style="color:red;">Lorem ipsum ad his scripta blandit partiendo, eum fastidii accumsan euripidis in, eum liber hendrerit an. 
+            Qui ut wisi vocibus suscipiantur, quo dicit ridens inciderint id. Quo mundi lobortis reformidans eu, legimus 
+            senserit definiebas an eos. Eu sit tincidunt incorrupte definitionem, vis mutat affert percipit cu, eirmod 
+            consectetuer signiferumque eu per. In usu latine equidem dolores. Quo no falli viris intellegam, ut fugit veritus 
+            placerat per.</p>
+            <p style="color:blue;">Ius id vidit volumus mandamus, vide veritus democritum te nec, ei eos debet libris consulatu. No mei ferri graeco 
+            dicunt, ad cum veri accommodare. Sed at malis omnesque delicata, usu et iusto zzril meliore. Dicunt maiorum eloquentiam 
+            cum cu, sit summo dolor essent te. Ne quodsi nusquam legendos has, ea dicit voluptua eloquentiam pro, ad sit quas 
+            qualisque. Eos vocibus deserunt quaestio ei.</p>
+            <p style="color:green">Blandit incorrupte quaerendum in quo, nibh impedit id vis, vel no nullam semper audiam. Ei populo graeci consulatu mei,
+            has ea stet modus phaedrum. Inani oblique ne has, duo et veritus detraxit. Tota ludus oratio ea mel, offendit persequeris 
+            ei vim. Eos dicat oratio partem ut, id cum ignota senserit intellegat. Sit inani ubique graecis ad, quando graecis 
+            liberavisse et cum, dicit option eruditi at duo. Homero salutatus suscipiantur eum id, tamquam voluptaria expetendis ad 
+            sed, nobis feugiat similique usu ex.</p>
+        </div>
+        <br/>
+        <div id="padding" style="border:1px solid black;">
+            <h2>Padding animation</h2>
+            <p>Lorem ipsum ad his scripta blandit partiendo, eum fastidii accumsan euripidis in, eum liber hendrerit an. 
+            Qui ut wisi vocibus suscipiantur, quo dicit ridens inciderint id. Quo mundi lobortis reformidans eu, legimus 
+            senserit definiebas an eos. Eu sit tincidunt incorrupte definitionem, vis mutat affert percipit cu, eirmod 
+            consectetuer signiferumque eu per. In usu latine equidem dolores. Quo no falli viris intellegam, ut fugit veritus 
+            placerat per.</p>
+        </div>
+        <br/>
+        <div id="font_size">
+            <h2>Font size animation</h2>
+            <p>Lorem ipsum ad his scripta blandit partiendo, eum fastidii accumsan euripidis in, eum liber hendrerit an. 
+            Qui ut wisi vocibus suscipiantur, quo dicit ridens inciderint id. Quo mundi lobortis reformidans eu, legimus 
+            senserit definiebas an eos. Eu sit tincidunt incorrupte definitionem, vis mutat affert percipit cu, eirmod 
+            consectetuer signiferumque eu per. In usu latine equidem dolores. Quo no falli viris intellegam, ut fugit veritus 
+            placerat per.</p>
+        </div>
+        <br/><br/><br/>
+        <br/><br/><br/>
+        <br/><br/><br/>
+        <br/><br/><br/>
+        <br/><br/><br/>
+        <br/><br/><br/>
+        <br/><br/><br/>
+        <br/><br/><br/>
+        <br/><br/><br/>
+        <br/><br/><br/>
+        <br/><br/><br/>
+        <br/><br/><br/>
+    </body>
+</html>
