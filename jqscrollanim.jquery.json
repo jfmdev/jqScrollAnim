@@ -1,5 +1,5 @@
 {
-	"version": "2.1.2",
+	"version": "1.0.0",
 	"name": "jqscrollanim",
 	"title": "jqScrollAnim",
 	"description": "jQuery plugin for define animations whose reproduction depends on the position of the vertical scroll.",
