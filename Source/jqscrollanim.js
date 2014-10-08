@@ -17,7 +17,7 @@
  * Definition of the jQuery plugin "jqScrollAnim", which allows to define animations that
  * modify CSS properties depending of the scroll's position.
  * 
- * @version 1.0
+ * @version 1.1
  * @author Jose F. Maldonado
  */
 (function( $ ) {
@@ -25,11 +25,12 @@
      * jqScrollAnim - allows to define animations that modify CSS properties depending of the scroll's position
      * 
      * The 'options' parameter allows to specify when the animations are going to start and end and which CSS properties
-     * are going to be modified. It uses the properties 'rep_s', 'rep_e', 'rew_s', 'rew_e', 'stake', 'animation' 
-     * and 'animations'.
+     * are going to be modified. It uses the properties 'rep', 'rew', 'stake', 'animation' and 'animations'.
      * 
-     * The properties 'rep_s' and 'rep_e' allows to define when the animations are going to start and end;
-     * while the properties 'rew_s' and 'rew_e', if defined, allow to indicate when the animation is going to be rewinded.
+     * The parameter 'rep' is an object with the properties 'start', 'end', 'ref' and 'unit' that allows to define 
+     * when the animations are going to start and end;
+     * The parameter 'rew' has the same properties than 'rep' but, if defined, allows to indicate when the animation 
+     * is going to be rewinded.
      * 
      * The property 'stake' allows to define another element's position as reference for start and end the animations, instead
      * of using the position of the element which is being animanted.
@@ -41,19 +42,31 @@
      * @class jqScrollAnim
      * @memberOf jQuery.fn
      * 
-     * @param {Object} options An object, with the properties 'rep_s', 'rep_e', 'rew_s', 'rew_e', 'stake', 'animation' and 'animations'.
+     * @param {Object} options An object, with the properties 'rep', 'rew', 'stake', 'animation' and 'animations'.
      * @returns {Object} A jQuery object (in order to support chaining).
      */
     $.fn.jqScrollAnim = function(options) {
         // --- Set default values --- //
         var settings = $.extend({
-            rep_s: 0,
-            rep_e: 200,
-            rew_s: null,
-            rew_e: null,
+            rep: {},
+            rew: {},
             animations: [],
             stake: null
             }, options );
+
+        settings.rep = $.extend({
+            start: 0,
+            end: 200,
+            unit: 'px',
+            ref: 'upper-bottom'
+        }, settings.rep);
+
+        settings.rew = $.extend({
+            start: null,
+            end: null,
+            unit: 'px',
+            ref: 'base-top'
+        }, settings.rew);
 
         if(settings.animation !== undefined && settings.animation !== null) {
             settings.animations.push(settings.animation);
@@ -101,8 +114,8 @@
             // Get the target.
             var target = $(this);
            
-		    // Set last progress.
-		    $.data(target, 'last_progress', -1);
+            // Set last progress.
+            $.data(target, 'last_progress', -1);
 		   
             // Save position values.
             $.data(target, 'position', target.position());
@@ -139,35 +152,19 @@
          * @param {jQuery} target The element to animate.
          */
         function onActiveAreaChanged(target) {
-            // Get the active area and the reference point.
+            // Initialization.
             var progress = 0.0;
             var area = getActiveArea();
-            var ref = settings.stake === null? target.offset().top : settings.stake.offset().top;
+            var point = settings.stake === null? target : settings.stake;
             
-            // Compare the position of the reference point with the reproduction/rewind points in order to calculate the progress.
-            var p0 = getPointPosition(settings.rep_s, area);
-            var p1 = getPointPosition(settings.rep_e, area);
-            if(ref < p0) {
-                if(ref > p1) {
-                    progress = 1.0 - (ref - p1)/(p0-p1);
-                } else {
-                    progress = 1.0;
-                    if(settings.rew_s !== null && settings.rew_e !== null) {
-                        var p2 = getPointPosition(settings.rew_s, area);
-                        var p3 = getPointPosition(settings.rew_e, area);
-                        if(ref < p2) {
-                            if(ref > p3) {
-                                progress = (ref - p3)/(p2-p3);
-                            } else {
-                                progress = 0.0;
-                            }
-                        }
-                    }
-                }
+            // Calculate the reproduction's progress.
+            var progress = calculateProgress(point, settings.rep, area);
+            
+            // If the reproductions has finished, calculate the rewind's progress.
+            if(progress >= 1.0 && settings.rew.start !== null && settings.rew.end !== null) {
+                progress = 1.0 - calculateProgress(point, settings.rew, area);
             }
             
-if(target.attr('id') == "DELETE") console.log(progress + " - " + $.data(target, 'last_progress') + " = " + target.css(settings.animations[0].property));
-			
             // Verify if the progress has changed.
             if(progress !== $.data(target, 'last_progress'))
             {
@@ -221,7 +218,6 @@ if(target.attr('id') == "DELETE") console.log(progress + " - " + $.data(target, 
                         target.css(anim.property, anim.end[select]);
                     }
                 }
-if(target.attr('id') == "DELETE") console.log("           = " + target.css(settings.animations[0].property));
 
                 // Update last progress.
                 $.data(target, 'last_progress', progress);
@@ -229,19 +225,33 @@ if(target.attr('id') == "DELETE") console.log("           = " + target.css(setti
         }
         
         /**
-         * Calculates the absolute position of a reproduction/rewind point.
+         * Calculate the progress of an animation.
          * 
-         * @param {number} point A point value.
-         * @param {object} area The current active area.
-         * @returns {number} The point's position.
+         * @param {object} point The jQuery object of the referece point.
+         * @param {object} options An object with the values 'start', 'end', 'ref' and 'unit'.
+         * @param {object} area The visible area of the page.
+         * @returns {Number} A number between 0 and 1
          */
-        function getPointPosition(point, area) {
-            // Verify if the point has been defined as an offset or as an percentage.
-            if((point>0 && point<1) || (point>-1 && point<0)) {
-                point = parseInt(point*(area.y_max - area.y_min), 10);
-            }
+        function calculateProgress(point, options, area) {
+            // Calculate distance between the point and the margin.
+            var poi = options.ref.lastIndexOf('upper-') >= 0? point.offset().top : (point.offset().top + point.height()); 
+            var mar = options.ref.lastIndexOf('-top') >= 0? area.y_min : area.y_max; 
+            var dist = mar - poi;
             
-            return point >= 0? area.y_max - point : area.y_min - point;
+            // Calculate limit distances (note that always d1 > d0).
+            var d0 = options.unit === 'px'? options.start : parseInt(options.start * (area.y_max - area.y_min),10);
+            var d1 = options.unit === 'px'? options.end : parseInt(options.end * (area.y_max - area.y_min),10);
+
+            // Calculate progress.
+            var progress = 0.0;
+            if(dist >= d0) {
+                if(dist >= d1) {
+                    progress = 1.0;
+                } else {
+                    progress = (dist - d0) / (d1 - d0);
+                }
+            }
+            return progress;
         }
         
         /**

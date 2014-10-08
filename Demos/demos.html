@@ -18,54 +18,44 @@
                 
                 // Animate texts.
                 jQuery("#text_1").jqScrollAnim({
-                    rep_s: 0.2,
-                    rep_e: 0.7,
+                    rep: {start: 0.2, end: 0.7, unit:'%'},
                     animation: {type:'fade'}
                 });
                 jQuery("#text_2").jqScrollAnim({
-                    rep_s: 0.05,
-                    rep_e: 0.55,
+                    rep: {start: 0.05, end: 0.55, unit:'%'},
                     animation: {type:'move-left'}
                 });
                 jQuery("#text_3").jqScrollAnim({
-                    rep_s: 0.05,
-                    rep_e: 0.55,
+                    rep: {start: 0.05, end: 0.55, unit:'%'},
                     animation: {type:'move-right'}
                 });
                 jQuery("#text_4").jqScrollAnim({
-                    rep_s: 0.05,
-                    rep_e: 0.55,
+                    rep: {start: 0.05, end: 0.55, unit:'%'},
                     animation: {type:'integer', property:'font-size', start:1, end:12, unit:'pt'}
                 });
                 jQuery("#text_5").jqScrollAnim({
-                    rep_s: 0.2,
-                    rep_e: 0.7,
+                    rep: {start: 0.2, end: 0.7, unit:'%'},
                     animations: [{type:'fade'}, {type:'move-right'}]
                 });
                 jQuery("#text_6").jqScrollAnim({
-                    rep_s: 0.1,
-                    rep_e: 0.6,
+                    rep: {start: 0.1, end: 0.6, unit:'%'},
                     animation: {type:'integer', property:'top', start:jQuery("#text_6").width()},
                     stake: '#stake_6'
                 });
                 jQuery("#cover_7").jqScrollAnim({
-                    rep_s: 0.2,
-                    rep_e: 0.7,
+                    rep: {start: 0.2, end: 0.7, unit:'%'},
                     animation: {type:'integer', property:'left', end:0, end:'out-left', unit:'px'}
                 });
                 jQuery("#cover_8a").jqScrollAnim({
-                    rep_s: 0.2,
-                    rep_e: 0.7,
+                    rep: {start: 0.2, end: 0.7, unit:'%'},
                     animation: {type:'integer', property:'left', end:'out-left', unit:'px'}
                 });
                 jQuery("#cover_8b").jqScrollAnim({
-                    rep_s: 0.2,
-                    rep_e: 0.7,
+                    rep: {start: 0.2, end: 0.7, unit:'%'},
                     animation: {type:'integer', property:'right', end:'out-right', unit:'px'}
                 });
                 jQuery("#text_9").jqScrollAnim({
-                    rep_s: 0.2,
-                    rep_e: 0.7,
+                    rep: {start: 0.2, end: 0.7, unit:'%'},
                     animation: {type:'sequence', property:'font-family', end:[
                             'Arial, Helvetica, sans-serif',
                             '"Comic Sans MS", cursive, sans-serif',
@@ -75,43 +65,35 @@
                     ]}
                 });
                 jQuery("#text_10").jqScrollAnim({
-                    rep_s: 0.15,
-                    rep_e: 0.6,
+                    rep: {start: 0.15, end: 0.6, unit:'%'},
                     animation: {type:'color', property:'color', end:[255,0,0]}
                 });
                 jQuery("#text_11").jqScrollAnim({
-                    rep_s: 0.15,
-                    rep_e: 0.6,
+                    rep: {start: 0.15, end: 0.6, unit:'%'},
                     animation: {type:'color', property:'color', end:[0,255,0]}
                 });
                 jQuery("#text_12").jqScrollAnim({
-                    rep_s: 0.15,
-                    rep_e: 0.6,
+                    rep: {start: 0.15, end: 0.6, unit:'%'},
                     animation: {type:'color', property:'color', end:[0,0,255]}
                 });                
                 jQuery("#text_13").jqScrollAnim({
-                    rep_s: 0.2,
-                    rep_e: 0.4,
+                    rep: {start: 0.2, end: 0.4, unit:'%'},
                     animation: {type:'color', property:'color', start:[0,0,0], end:[255,0,0]}
                 });
                 jQuery("#text_13").jqScrollAnim({
-                    rep_s: 0.4,
-                    rep_e: 0.6,
+                    rep: {start: 0.4, end: 0.6, unit:'%'},
                     animation: {type:'color', property:'color', start:[255,0,0], end:[0,255,0]}
                 });
                 jQuery("#text_13").jqScrollAnim({
-                    rep_s: 0.6,
-                    rep_e: 0.8,
+                    rep: {start: 0.6, end: 0.8, unit:'%'},
                     animation: {type:'color', property:'color', start:[0,255,0], end:[0,0,255]}
                 });
                 jQuery("#text_14").jqScrollAnim({
-                    rep_s: 0.2,
-                    rep_e: 0.8,
+                    rep: {start: 0.2, end: 0.8, unit:'%'},
                     animation: {type:'sequence', property:'color', end:['black','blue','red','green','violet']}
                 });
                 jQuery("#text_15").jqScrollAnim({
-                    rep_s: 0.2,
-                    rep_e: 0.99,
+                    rep: {start: 0.2, end: 1.0, unit:'%'},
                     animation: {type:'sequence', property:'color', end:['black','blue','red','blue','red','blue','red','blue','red']}
                 });
             });
