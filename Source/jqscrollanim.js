@@ -52,8 +52,7 @@
             rew_s: null,
             rew_e: null,
             animations: [],
-            stake: null,
-            last_progress: null
+            stake: null
             }, options );
 
         if(settings.animation !== undefined && settings.animation !== null) {
@@ -102,6 +101,9 @@
             // Get the target.
             var target = $(this);
            
+		    // Set last progress.
+		    $.data(target, 'last_progress', -1);
+		   
             // Save position values.
             $.data(target, 'position', target.position());
             $.data(target, 'offset', target.offset());       
@@ -164,8 +166,10 @@
                 }
             }
             
+if(target.attr('id') == "DELETE") console.log(progress + " - " + $.data(target, 'last_progress') + " = " + target.css(settings.animations[0].property));
+			
             // Verify if the progress has changed.
-            if(progress !== settings.last_progress)
+            if(progress !== $.data(target, 'last_progress'))
             {
                 // Execute animations.
                 for(var a=0; a<settings.animations.length; a++) {
@@ -217,9 +221,10 @@
                         target.css(anim.property, anim.end[select]);
                     }
                 }
+if(target.attr('id') == "DELETE") console.log("           = " + target.css(settings.animations[0].property));
 
                 // Update last progress.
-                settings.last_progress = progress;
+                $.data(target, 'last_progress', progress);
             }
         }
         
@@ -293,5 +298,3 @@
             }
     };
 }( jQuery ));
-
-
