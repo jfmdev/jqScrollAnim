@@ -45,7 +45,7 @@ so the animations are reproduced when the vertical scroll is being moved.
 
 #### Reproduction
 
-When creating an animation with jqScrollAnim, the parameter _rep_, by using the properties _start_ and _end_, 
+When creating an animation with jqScrollAnim, the parameter _rep_, whose main properties are _start_ and _end_, 
 allow to define when the animation must start and when it must finish.
 
 Every time that the vertical scroll is moved, the plugin calculates the distances (in pixels) between the animated elements and the screen's margins. 
@@ -135,7 +135,7 @@ and is going to become opaque when the distance is equal to half  the screen siz
 
 #### Rewind 
 
-After reproducing the animation, it is also possible to define two triggers to 'rewind' the animation.
+After reproducing the animation, it is also possible to define a trigger to 'rewind' the animation.
 This is done by using the parameter _rew_, which has the same properties than _rep_ but with the difference that his default value
 for _ref_ is "base-bottom" (instead of "top-upper").
 
