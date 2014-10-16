@@ -240,7 +240,7 @@ and for _end_ is "out-left" or "out-right" (these two are special values that ar
 As consequence, `{type: 'move-left'}` is equivalent to `{type: 'integer', property:'left', end:'out-left'}`
 and  `{type: 'move-right'}` is equivalent to `{type: 'integer', property:'left', end:'out-right'}`
 
-[Live demo](http://jsfiddle.net/jfmdev/7efj6acz/1/)
+[Live demo](http://jsfiddle.net/jfmdev/7efj6acz/2/)
 
 In a side note, when doing movement animations, do not forget that, in most cases, 
 the animation is not going to work unless the element has defined the CSS property "position".
