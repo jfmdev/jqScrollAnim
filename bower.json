@@ -15,7 +15,7 @@
     "animation",
     "position"
   ],
-  "license": "LGPLv3",
+  "license": "MPL-2.0",
   "ignore": [
     "**/.*",
     "node_modules",
