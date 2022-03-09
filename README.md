@@ -1,3 +1,5 @@
+> **Notice:** this project has been archived, please consider using _Scrollspy_ instead. 
+
 jqScrollAnim
 ============
 
